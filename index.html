@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Checkers</title>
+    <style media="screen">
+      .hole{
+        display: inline-block;
+        border: 1px solid black;
+        width: 80px;
+        height: 80px;
+        vertical-align: top;
+      }
+      img{
+        width: 60px;
+      }
+      #container {
+        width: 984px;
+        border: 5px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+
+    </div>
+
+    <script type="text/javascript">
+
+    var board = new Array(12);
+    for(var i=0; i<12; i++){
+      board[i] = new Array(12);
+    }
+
+    console.log(board.length);
+
+    for(var i=0; i<144; i++){
+        var newHole = document.createElement('div');
+        newHole.className = 'hole';
+        document.getElementById('container').appendChild(newHole);
+    }
+    var holes = document.querySelectorAll('.hole');
+
+    count=0;
+    for(var rows=0; rows<12; rows++){
+      for (var cols=0; cols<12; cols++){
+        board[rows][cols] = holes[count];
+        count++;
+      }
+    }
+
+    for(var rows=0; rows<12; rows++){
+      for (var cols=0; cols<12; cols=cols+2){
+        if(rows%2 === 0){
+          board[rows][cols].style.backgroundColor = "black";
+          board[rows][cols+1].style.backgroundColor = "red";
+          if(rows<3){
+            board[rows][cols].innerHTML = '<img src="red_checker.png" alt="">';
+          }
+          if(rows>8){
+            board[rows][cols].innerHTML = '<img src="black_checker.png" alt="">';
+          }
+        } else {
+          board[rows][cols].style.backgroundColor = "red";
+          board[rows][cols+1].style.backgroundColor = "black";
+          if(rows<3){
+            board[rows][cols+1].innerHTML = '<img src="red_checker.png" alt="">';
+          }
+          if(rows>8){
+            board[rows][cols+1].innerHTML = '<img src="black_checker.png" alt="">';
+          }
+        }
+      }
+    }
+    </script>
+  </body>
+</html>
